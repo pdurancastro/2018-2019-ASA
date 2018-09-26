@@ -1,0 +1,14 @@
+# Mi programa hola mundo
+# Esto son comentarios
+.data
+str:
+.asciiz "Hola Mundo en MIPS32\n"
+num: .half 12
+.text
+main:  
+la $a0, str
+li $v0, 4
+syscall
+li $v0, 10
+syscall
+

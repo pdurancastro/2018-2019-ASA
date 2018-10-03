@@ -1,7 +1,7 @@
 	.data
 	
-num1:	.space	2 #Estoy reservando en memoria 2 bytes
-num2: 	.space  2 
+num1:	.space	3 #Estoy reservando en memoria 2 bytes
+num2: 	.space  3 
 	.text
 	
 	

@@ -22,7 +22,8 @@ cad:	.space 1024
 	
 	#-- S0 es el puntero. Inicialmente apunta al primer caracter de la cadena 
 	la $s0, cad
-	
+	#-- S1 es el puntero. Apunta al 1 caracter de la cadena 
+	la $s1, cad
 	
 next:	
 	#Leer caracter actual
@@ -33,15 +34,31 @@ next:
 	move $a0, $t0
 	syscall
 	
-	addi $s0, $s0, 1
 	
 	li $t1, '\n'
 	beq $t0, $t1, Puntero2
+	
+	addi $s0, $s0, 1
 	
 	b next 
 
 Puntero2: 	
 	#Guardo el valor del puntero 2
+	#lb $t0, 0($s1)	#-- En t0 tenemos el caracter actual 
+	subi $s0,$s0, 1
+	lb $t0, 0($s0)
+	
+	#-- Imprimir el caracter actual
+	li $v0, 11
+	move $a0, $t0
+	syscall
+	
+	#-- Imprimir el caracter actual
+	lb $t1, 0($s1)
+	li $v0, 11
+	move $a0, $t1
+	syscall
+	
 	
 	
 	li $v0, 10
